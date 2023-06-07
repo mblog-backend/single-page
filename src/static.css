@@ -34,9 +34,11 @@
   text-indent: 0 !important;
 }
 
-#mblog .content img {
-  max-width: 200px;
-  max-height: 200px;
+#mblog .content img,
+#mblog .imgs img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
 }
 
 #mblog .comment-btn {
