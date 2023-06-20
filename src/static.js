@@ -148,23 +148,25 @@
               "YYYY-MM-DD HH:mm"
             )}</div>
           </div>
-          <div class="content">
+          <div class="md-content">
             ${marked.parse(item.content)}
           </div>
           ${
             item.resources
-              ? `<div class="imgs">${item.resources.map((res) => {
-                  const thumbnail = res.url + (res.suffix || "");
-                  const thumbnailHref =
-                    res.storageType === "LOCAL"
-                      ? mblogConfig.url + thumbnail
-                      : thumbnail;
-                  const url =
-                    res.storageType === "LOCAL"
-                      ? mblogConfig.url + res.url
-                      : res.url;
-                  return `<img src="${thumbnailHref}" data-url="${url}" />`;
-                })}</div>`
+              ? `<div class="imgs">${item.resources
+                  .map((res) => {
+                    const thumbnail = res.url + (res.suffix || "");
+                    const thumbnailHref =
+                      res.storageType === "LOCAL"
+                        ? mblogConfig.url + thumbnail
+                        : thumbnail;
+                    const url =
+                      res.storageType === "LOCAL"
+                        ? mblogConfig.url + res.url
+                        : res.url;
+                    return `<img src="${thumbnailHref}" data-url="${url}" />`;
+                  })
+                  .join(" ")}</div>`
               : ""
           }
           <div class="comment" >
@@ -216,7 +218,6 @@
           e.target.nextElementSibling.nextElementSibling.nextElementSibling
         );
       } else if (e.target.matches(".imgs img")) {
-        console.log(e.target);
         const mask = document.createElement("div");
         mask.setAttribute("id", "mblog-mask");
         mask.style.top = window.scrollY + "px";
